@@ -8,4 +8,12 @@ public class CompanyRepository {
     public CompanyRepository(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
+
+    private void init() {
+        System.out.println("init");
+    }
+
+    private void destroy() {
+        System.out.println("destroy");
+    }
 }

@@ -3,20 +3,34 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="pool1" class="org.example.rzag.spring.database.pool.ConnectionPool">
-        <constructor-arg value="postgres"/>
-        <constructor-arg value="30"/>
-        <constructor-arg>
+    <bean id="pool1" class="org.example.rzag.spring.database.pool.ConnectionPool"
+          init-method="init"
+          destroy-method="destroy"
+          scope="singleton">
+        <constructor-arg name="username" value="postgres"/>
+        <constructor-arg name="poolSize" value="30"/>
+        <constructor-arg name="args" type="java.util.List">
             <list>
                 <value>--arg=value1</value>
                 <value>--arg=value2</value>
             </list>
         </constructor-arg>
         <constructor-arg>
+            <null/>
+        </constructor-arg>
+        <property name="properties">
             <map>
                 <entry key="url" value="postgresurl"/>
                 <entry key="password" value="123"/>
             </map>
-        </constructor-arg>
+        </property>
+    </bean>
+
+    <bean id="companyRepository" class="org.example.rzag.spring.database.repository.repository.CompanyRepository"
+          init-method="init"
+          destroy-method="destroy"
+          scope="prototype">
+
+        <constructor-arg ref="pool1"/>
     </bean>
 </beans>

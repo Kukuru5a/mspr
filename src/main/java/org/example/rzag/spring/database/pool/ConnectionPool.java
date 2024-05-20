@@ -7,7 +7,7 @@ public class ConnectionPool {
 private final String username;
 private final Integer poolSize;
 private final List<Object> args;
-private final Map<String, Object> properties;
+private Map<String, Object> properties;
 
     public ConnectionPool(String username,
                           Integer poolSize,
@@ -17,5 +17,23 @@ private final Map<String, Object> properties;
         this.poolSize = poolSize;
         this.args = args;
         this.properties = properties;
+    }
+
+
+
+    private void init() {
+        System.out.println("init connection pool");
+    }
+
+    public void setProperties(Map<String, Object> properties) {
+        this.properties = properties;
+    }
+
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    private void destroy() {
+        System.out.println("clean connectionPool");
     }
 }

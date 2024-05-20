@@ -9,9 +9,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ApplicationRunner {
     public static void main(String[] args) {
-    var context = new ClassPathXmlApplicationContext("applicationContext.xml");
-//        var connectionPool1 = context.getBean("pool2", ConnectionPool.class);
-        var connectionPool2 = context.getBean("pool1", ConnectionPool.class);
-        System.out.println(connectionPool2);
+        try (var context = new ClassPathXmlApplicationContext("applicationContext.xml")) {
+            var connectionPool1 = context.getBean("pool1", ConnectionPool.class);
+            System.out.println(connectionPool1);
+
+            var cpmpanyRepository = context.getBean("companyRepository", CompanyRepository.class);
+            System.out.println(cpmpanyRepository);
+        }
     }
 }
