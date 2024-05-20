@@ -9,6 +9,8 @@
         <property name="locations" value="application.properties"/>
     </bean>
 
+    <bean class="org.example.rzag.spring.bfpp.LogBeanFactoryPostProcessor"/>
+    <bean class="org.example.rzag.spring.bfpp.VerifyPropertiesBeanFactoryPostProcessor"/>
     <bean id="driver" class="java.lang.String">
         <constructor-arg type="java.lang.String" value="${db.driver}"/>
     </bean>
