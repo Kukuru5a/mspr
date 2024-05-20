@@ -1,5 +1,7 @@
 package org.example.rzag.spring.database.pool;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +22,7 @@ private Map<String, Object> properties;
     }
 
 
-
+    @PostConstruct
     private void init() {
         System.out.println("init connection pool");
     }
@@ -32,7 +34,7 @@ private Map<String, Object> properties;
     public Map<String, Object> getProperties() {
         return properties;
     }
-
+    @PreDestroy
     private void destroy() {
         System.out.println("clean connectionPool");
     }
