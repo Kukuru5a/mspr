@@ -3,6 +3,20 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="pool1" class="org.example.rzag.spring.database.pool.ConnectionPool"/>
-    <bean id="pool2" class="org.example.rzag.spring.database.pool.ConnectionPool"/>
+    <bean id="pool1" class="org.example.rzag.spring.database.pool.ConnectionPool">
+        <constructor-arg value="postgres"/>
+        <constructor-arg value="30"/>
+        <constructor-arg>
+            <list>
+                <value>--arg=value1</value>
+                <value>--arg=value2</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg>
+            <map>
+                <entry key="url" value="postgresurl"/>
+                <entry key="password" value="123"/>
+            </map>
+        </constructor-arg>
+    </bean>
 </beans>
