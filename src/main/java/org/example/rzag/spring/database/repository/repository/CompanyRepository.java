@@ -4,13 +4,14 @@ import org.example.rzag.spring.database.bpp.InjectBean;
 import org.example.rzag.spring.database.bpp.Transaction;
 import org.example.rzag.spring.database.pool.ConnectionPool;
 import org.example.rzag.spring.entity.Company;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 @Transaction
 public class CompanyRepository implements CRUDRepository<Integer, Company> {
-    @InjectBean
+    @Autowired
     private ConnectionPool connectionPool;
 
     @PostConstruct

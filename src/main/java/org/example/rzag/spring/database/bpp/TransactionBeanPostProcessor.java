@@ -10,7 +10,7 @@ import java.lang.reflect.Proxy;
 public class TransactionBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        return Proxy.newProxyInstance(bean.getClass().getClassLoader(), bean.getClass().getInterfaces(),
+        var proxyInst =  Proxy.newProxyInstance(bean.getClass().getClassLoader(), bean.getClass().getInterfaces(),
                 (proxy, method, args) -> {
                     System.out.println("Open transaction");
                     try {
@@ -19,6 +19,7 @@ public class TransactionBeanPostProcessor implements BeanPostProcessor {
                         System.out.println("Close transaction");
                     }
                 });
+        return proxyInst;
     }
 
     @Override
