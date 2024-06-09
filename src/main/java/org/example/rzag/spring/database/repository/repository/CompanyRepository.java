@@ -5,11 +5,13 @@ import org.example.rzag.spring.database.bpp.Transaction;
 import org.example.rzag.spring.database.pool.ConnectionPool;
 import org.example.rzag.spring.entity.Company;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 @Transaction
+@Scope("singleton")
 public class CompanyRepository implements CRUDRepository<Integer, Company> {
     @Autowired
     private ConnectionPool connectionPool;
